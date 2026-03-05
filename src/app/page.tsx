@@ -111,7 +111,7 @@ function Navbar() {
             M
           </div>
           <div className="hidden min-[400px]:block">
-            <div className="text-[14px] font-bold text-[#151515]">Metin İlhan</div>
+            <div className="text-[14px] font-bold text-[#151515]">Avcıvip Kurye</div>
             <div className="text-[11px] font-medium tracking-wide text-[#797979]">7/24 Motor Kurye</div>
           </div>
         </a>
@@ -124,7 +124,7 @@ function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href="tel:05425591020"
+          <a href="tel:05309223424"
             className="ml-4 flex items-center gap-2 rounded-full bg-[#C1F11D] px-5 py-2.5 text-[13px] font-bold text-[#151515] transition-all hover:shadow-lg hover:shadow-[#C1F11D]/30">
             <Phone className="h-3.5 w-3.5" />
             Hemen Ara
@@ -146,9 +146,9 @@ function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href="tel:05425591020"
+          <a href="tel:05309223424"
             className="my-3 block rounded-full bg-[#C1F11D] py-3.5 text-center text-[15px] font-bold text-[#151515]">
-            0542 559 10 20
+            0530 922 34 24
           </a>
         </div>
       </div>
@@ -179,7 +179,7 @@ function Hero() {
           <div className="h-32 w-32 md:h-44 md:w-44 rounded-full border-4 border-[#FFFEE9] bg-[#151515] p-2 shadow-sm flex items-center justify-center">
             {/* Inside avatar */}
             <div className="relative flex w-full h-full rounded-full border-[1.5px] border-dashed border-[#C1F11D] items-center justify-center flex-col bg-[#151515]">
-              <span className="text-[10px] md:text-[11px] font-bold text-[#C1F11D] tracking-wide mt-1">METİN İLHAN</span>
+              <span className="text-[10px] md:text-[11px] font-bold text-[#C1F11D] tracking-wide mt-1">AVCIVIK KURYE</span>
               <div className="flex items-center justify-center my-0.5 text-[#C1F11D]">
                 <Bike className="h-7 w-7 md:h-10 md:w-10" />
               </div>
@@ -194,10 +194,10 @@ function Hero() {
         {/* Title */}
         <div className="anim-fade-up d3 mt-5 text-center">
           <h1 className="text-[32px] md:text-4xl font-extrabold text-[#151515] tracking-tight">
-            İstanbul kurye Metin
+            Avcıvip Kurye
           </h1>
           <div className="mt-1 flex items-center justify-center gap-1.5 text-[15px] md:text-[16px] font-semibold text-[#797979]">
-             ~İstanbul kurye
+             ~Avcıvip Kurye
              <BadgeCheck className="h-5 w-5 text-blue-500 fill-white" />
           </div>
         </div>
@@ -205,8 +205,8 @@ function Hero() {
         {/* 4 Action Buttons */}
         <div className="anim-fade-up d4 mt-8 grid grid-cols-4 gap-3 max-w-[400px] mx-auto">
           {[
-            { id: "sesli", icon: <Phone className="h-6 w-6" />, label: "Sesli", href: "tel:05425591020" },
-            { id: "mesaj", icon: <MessageCircle className="h-6 w-6" />, label: "Mesaj", href: "https://wa.me/905425591020" },
+            { id: "sesli", icon: <Phone className="h-6 w-6" />, label: "Sesli", href: "tel:05309223424" },
+            { id: "mesaj", icon: <MessageCircle className="h-6 w-6" />, label: "Mesaj", href: "https://wa.me/905309223424" },
             { id: "katalog", icon: <Store className="h-6 w-6" />, label: "Katalog", href: "#hizmetler" },
             { id: "paylas", icon: <Share2 className="h-6 w-6" />, label: "Paylaş", href: "#" },
           ].map((btn) => (
@@ -437,12 +437,12 @@ function About() {
             <h2 className="mt-2 text-[clamp(1.8rem,4.5vw,2.5rem)] leading-tight font-bold tracking-tight text-[#151515]">
               İstanbul Kurye&apos;de Güvenilir İsim:{" "}
               <span className="relative inline-block">
-                <span className="relative z-10">Metin İlhan</span>
+                <span className="relative z-10">Avcıvip Kurye</span>
                 <span className="absolute bottom-0.5 left-0 -z-0 h-3 w-full bg-[#C1F11D]/40" />
               </span>
             </h2>
             <p className="mt-5 text-[15px] font-light leading-[1.8] text-[#797979]">
-              Yıllardır İstanbul&apos;un kurye sektöründe hizmet veren Metin İlhan, profesyonel ekibiyle motor kurye, arabalı kurye, eczane kurye ve daha birçok özel hizmet sunmaktadır.
+              Yıllardır İstanbul&apos;un kurye sektöründe hizmet veren Avcıvip Kurye, profesyonel ekibiyle motor kurye, arabalı kurye, eczane kurye ve daha birçok özel hizmet sunmaktadır.
             </p>
             <ul className="mt-8 space-y-3.5">
               {features.map((f) => (
@@ -485,7 +485,7 @@ function About() {
 
 function Testimonials() {
   const reviews = [
-    { name: "Ahmet Y.", role: "E-ticaret Sahibi", text: "Yıllardır Metin Bey'le çalışıyoruz. Zamanında, güvenilir ve profesyonel. Kesinlikle tavsiye ederim." },
+    { name: "Ahmet Y.", role: "E-ticaret Sahibi", text: "Yıllardır Avcıvip Kurye ile çalışıyoruz. Zamanında, güvenilir ve profesyonel. Kesinlikle tavsiye ederim." },
     { name: "Fatma K.", role: "Eczane Sahibi", text: "Eczane kurye hizmetleri mükemmel. İlaçlar hastalara hızlı ve güvenle ulaşıyor." },
     { name: "Murat S.", role: "Avukat", text: "Acil evrak teslimatlarında güvenebileceğim tek kurye. Gece yarısı bile çözüm üretiyorlar." },
   ];
@@ -546,12 +546,12 @@ function CtaBand() {
             İstanbul&apos;un neresinde olursanız olun, kuryemiz kapınıza gelsin.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="tel:05425591020"
+            <a href="tel:05309223424"
               className="flex w-full items-center justify-center gap-2.5 rounded-full bg-[#151515] px-8 py-4 text-[15px] font-bold text-white transition-all hover:shadow-xl hover:shadow-[#151515]/20 sm:w-auto">
               <Phone className="h-4 w-4" />
-              0542 559 10 20
+              0530 922 34 24
             </a>
-            <a href="https://wa.me/905425591020" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/905309223424" target="_blank" rel="noopener noreferrer"
               className="flex w-full items-center justify-center gap-2.5 rounded-full border-2 border-[#151515]/15 px-8 py-4 text-[15px] font-bold text-[#151515] transition-all hover:border-[#151515]/30 hover:bg-[#151515]/5 sm:w-auto">
               <MessageCircle className="h-4 w-4" />
               WhatsApp&apos;tan Yaz
@@ -585,8 +585,8 @@ function Contact() {
           <Reveal delay="d2">
             <div className="space-y-5">
               {[
-                { icon: <Phone className="h-5 w-5" />, label: "Telefon", value: "0542 559 10 20", href: "tel:05425591020", bg: "bg-[#C1F11D]" },
-                { icon: <MessageCircle className="h-5 w-5" />, label: "WhatsApp", value: "Mesaj Gönderin", href: "https://wa.me/905425591020", bg: "bg-[#22c55e] text-white" },
+                { icon: <Phone className="h-5 w-5" />, label: "Telefon", value: "0530 922 34 24", href: "tel:05309223424", bg: "bg-[#C1F11D]" },
+                { icon: <MessageCircle className="h-5 w-5" />, label: "WhatsApp", value: "Mesaj Gönderin", href: "https://wa.me/905309223424", bg: "bg-[#22c55e] text-white" },
                 { icon: <MapPin className="h-5 w-5" />, label: "Hizmet Alanı", value: "İstanbul — 39 İlçe", href: undefined, bg: "bg-[#151515]/5" },
                 { icon: <Clock className="h-5 w-5" />, label: "Çalışma Saatleri", value: "24 Saat Açık — Her Gün", href: undefined, bg: "bg-[#151515]/5" },
               ].map((c) => (
@@ -669,7 +669,7 @@ function Footer() {
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#C1F11D] text-sm font-bold text-[#151515]">M</div>
-            <span className="text-[14px] font-medium text-white/60">Metin İlhan — İstanbul Kurye</span>
+            <span className="text-[14px] font-medium text-white/60">Avcıvip Kurye — İstanbul</span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-[12px] text-white/40">
@@ -699,7 +699,7 @@ function FloatingWhatsApp() {
   }, []);
   if (!show) return null;
   return (
-    <a href="https://wa.me/905425591020" target="_blank" rel="noopener noreferrer"
+    <a href="https://wa.me/905309223424" target="_blank" rel="noopener noreferrer"
       className="anim-fade-up fixed right-4 bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#25D366] text-white shadow-xl shadow-[#25D366]/30 transition-transform hover:scale-110"
       aria-label="WhatsApp">
       <MessageCircle className="h-6 w-6" />

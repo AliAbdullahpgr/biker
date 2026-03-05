@@ -6,9 +6,9 @@ import { Roboto } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
-  title: "İstanbul Kurye Metin | 7/24 Motor Kurye Hizmeti",
+  title: "Avcıvip Kurye | 7/24 Motor Kurye Hizmeti",
   description:
-    "İstanbul'un 39 ilçesine 7/24 motor kurye hizmeti. Hızlı, güvenilir ve uygun fiyatlı kurye çözümleri. Metin İlhan - 0542 559 10 20",
+    "İstanbul'un 39 ilçesine 7/24 motor kurye hizmeti. Hızlı, güvenilir ve uygun fiyatlı kurye çözümleri. Avcıvip Kurye - 0530 922 34 24",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
