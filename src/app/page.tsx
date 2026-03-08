@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
+import * as Accordion from '@radix-ui/react-accordion';
+import useEmblaCarousel from 'embla-carousel-react';
+import { toast } from 'sonner';
 import {
   Phone,
   MessageCircle,
@@ -23,8 +26,6 @@ import {
   Users,
   TrendingUp,
   Headphones,
-  Store,
-  Share2,
   BadgeCheck,
 } from "lucide-react";
 
@@ -185,8 +186,13 @@ function Hero() {
               </div>
               <span className="text-[10px] md:text-[12px] font-bold text-[#C1F11D] leading-[1.2] pb-1">7/24<br/>MOTOR KURYE<br/>HİZMETİ</span>
               
-              {/* Spinning Decoration from original brand color */}
-              <div className="absolute -left-2 -right-2 -top-2 -bottom-2 rounded-full border-[3px] border-[#C1F11D]/20 border-t-[#C1F11D] animate-spin" style={{ animationDuration: '6s' }} />
+              {/* Spinning Decoration from original brand color (SVG version) */}
+              <div className="absolute -inset-2 animate-spin-slow pointer-events-none">
+                <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-[#C1F11D]" opacity="0.6">
+                  <circle cx="100" cy="100" r="96" stroke="currentColor" strokeWidth="4" strokeDasharray="16 16" strokeLinecap="round" />
+                  <circle cx="100" cy="100" r="96" stroke="currentColor" strokeWidth="4" strokeDasharray="4 28" strokeDashoffset="10" strokeLinecap="round" opacity="0.5" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -205,17 +211,60 @@ function Hero() {
         {/* 4 Action Buttons */}
         <div className="anim-fade-up d4 mt-8 grid grid-cols-4 gap-3 max-w-[400px] mx-auto">
           {[
-            { id: "sesli", icon: <Phone className="h-6 w-6" />, label: "Sesli", href: "tel:05309223424" },
-            { id: "mesaj", icon: <MessageCircle className="h-6 w-6" />, label: "Mesaj", href: "https://wa.me/905309223424" },
-            { id: "katalog", icon: <Store className="h-6 w-6" />, label: "Katalog", href: "#hizmetler" },
-            { id: "paylas", icon: <Share2 className="h-6 w-6" />, label: "Paylaş", href: "#" },
+            {
+              id: "sesli",
+              emoji: "📞",
+              label: "Sesli",
+              href: "tel:05309223424",
+              background: "linear-gradient(135deg, #efffb2 0%, #c9f33c 52%, #8cc60b 100%)",
+              shadow: "0 14px 28px rgba(193, 241, 29, 0.34)",
+            },
+            {
+              id: "mesaj",
+              emoji: "💬",
+              label: "Mesaj",
+              href: "https://wa.me/905309223424",
+              background: "linear-gradient(135deg, #b1ffd0 0%, #25D366 55%, #0ea84f 100%)",
+              shadow: "0 14px 28px rgba(37, 211, 102, 0.28)",
+            },
+            {
+              id: "katalog",
+              emoji: "🛍️",
+              label: "Katalog",
+              href: "#hizmetler",
+              background: "linear-gradient(135deg, #ffe1ad 0%, #ffb648 52%, #ff8a00 100%)",
+              shadow: "0 14px 28px rgba(255, 182, 72, 0.3)",
+            },
+            {
+              id: "paylas",
+              emoji: "📤",
+              label: "Paylaş",
+              href: "#",
+              background: "linear-gradient(135deg, #c0efff 0%, #49cbff 52%, #0b8dff 100%)",
+              shadow: "0 14px 28px rgba(73, 203, 255, 0.28)",
+            },
           ].map((btn) => (
-             <a key={btn.id} href={btn.href} className="group flex flex-col items-center justify-center gap-2 rounded-2xl bg-white py-4 shadow-sm border border-[#151515]/5 transition hover:shadow-md hover:-translate-y-0.5 hover:border-[#151515]/10">
-                <div className="text-[#C1F11D] transition-transform group-hover:scale-110">
-                   {btn.icon}
-                </div>
-                <span className="text-[13px] md:text-[14px] font-bold text-[#151515]">{btn.label}</span>
-             </a>
+            <a
+              key={btn.id}
+              href={btn.href}
+              className="group flex flex-col items-center justify-center gap-2.5 rounded-[22px] border border-[#151515]/5 bg-white/95 px-1 py-4 shadow-[0_10px_22px_rgba(21,21,21,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#151515]/10 hover:shadow-[0_16px_30px_rgba(21,21,21,0.12)]"
+            >
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-[18px] border border-white/70 transition duration-300 group-hover:scale-110 group-hover:-rotate-3"
+                style={{ backgroundImage: btn.background, boxShadow: btn.shadow }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="text-[31px] leading-none transition duration-300 group-hover:scale-110"
+                  style={{ filter: "saturate(1.35) contrast(1.08) brightness(1.04)" }}
+                >
+                  {btn.emoji}
+                </span>
+              </div>
+              <span className="text-[13px] md:text-[14px] font-extrabold tracking-[-0.01em] text-[#151515]">
+                {btn.label}
+              </span>
+            </a>
           ))}
         </div>
 
@@ -484,14 +533,17 @@ function About() {
    ═══════════════════════════════════════════ */
 
 function Testimonials() {
+  const [emblaRef] = useEmblaCarousel({ loop: true, align: "start" });
+
   const reviews = [
     { name: "Ahmet Y.", role: "E-ticaret Sahibi", text: "Yıllardır Avcıvip Kurye ile çalışıyoruz. Zamanında, güvenilir ve profesyonel. Kesinlikle tavsiye ederim." },
     { name: "Fatma K.", role: "Eczane Sahibi", text: "Eczane kurye hizmetleri mükemmel. İlaçlar hastalara hızlı ve güvenle ulaşıyor." },
     { name: "Murat S.", role: "Avukat", text: "Acil evrak teslimatlarında güvenebileceğim tek kurye. Gece yarısı bile çözüm üretiyorlar." },
+    { name: "Canan D.", role: "Ajans Yöneticisi", text: "Özel gönderilerimiz için sürekli tercih ediyoruz, her seferinde sorunsuz bir deneyim." },
   ];
 
   return (
-    <section id="yorumlar" className="bg-[#FFFEE9] py-24">
+    <section id="yorumlar" className="bg-[#FFFEE9] py-24 overflow-hidden">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <Reveal>
           <span className="text-[12px] font-bold tracking-[0.2em] text-[#797979] uppercase">Yorumlar</span>
@@ -500,31 +552,35 @@ function Testimonials() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {reviews.map((r, i) => (
-            <Reveal key={r.name} delay={`d${(i + 1) * 2}`}>
-              <div className="rounded-2xl border border-[#151515]/5 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#C1F11D]/10">
-                <div className="flex gap-0.5">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} className="h-4 w-4 fill-[#C1F11D] text-[#C1F11D]" />
-                  ))}
-                </div>
-                <p className="mt-4 text-[14px] font-light leading-[1.7] text-[#797979]">
-                  &ldquo;{r.text}&rdquo;
-                </p>
-                <div className="mt-5 flex items-center gap-3 border-t border-[#151515]/5 pt-4">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#C1F11D] text-[13px] font-bold text-[#151515]">
-                    {r.name[0]}
+        <Reveal delay="d2">
+          <div className="mt-12" ref={emblaRef}>
+            <div className="flex touch-pan-y -ml-4">
+              {reviews.map((r, i) => (
+                <div key={r.name} className="flex-[0_0_85%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-4 min-w-0">
+                  <div className="h-full rounded-2xl border border-[#151515]/5 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#C1F11D]/10">
+                    <div className="flex gap-0.5">
+                      {Array.from({ length: 5 }).map((_, j) => (
+                        <Star key={j} className="h-4 w-4 fill-[#C1F11D] text-[#C1F11D]" />
+                      ))}
+                    </div>
+                    <p className="mt-4 text-[14px] font-light leading-[1.7] text-[#797979]">
+                      &ldquo;{r.text}&rdquo;
+                    </p>
+                    <div className="mt-5 flex items-center gap-3 border-t border-[#151515]/5 pt-4">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#C1F11D] text-[13px] font-bold text-[#151515]">
+                        {r.name[0]}
+                      </div>
+                      <div>
+                        <div className="text-[13px] font-medium text-[#151515]">{r.name}</div>
+                        <div className="text-[11px] text-[#797979]">{r.role}</div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-[13px] font-medium text-[#151515]">{r.name}</div>
-                    <div className="text-[11px] text-[#797979]">{r.role}</div>
-                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -623,7 +679,13 @@ function Contact() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              <form onSubmit={(e) => { 
+                e.preventDefault(); 
+                setSent(true); 
+                toast.success("Mesajınız alındı!", {
+                  description: "En kısa sürede size dönüş yapacağız."
+                });
+              }}
                 className="space-y-3.5 rounded-2xl border border-[#151515]/5 bg-[#FFFEE9] p-6">
                 <input type="text" required placeholder="Adınız Soyadınız"
                   className="w-full rounded-xl border border-[#151515]/8 bg-white px-4 py-3.5 text-[14px] text-[#151515] placeholder-[#797979] outline-none transition focus:border-[#C1F11D] focus:ring-2 focus:ring-[#C1F11D]/20" />
@@ -653,6 +715,61 @@ function Contact() {
             )}
           </Reveal>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   FAQ SECTION
+   ═══════════════════════════════════════════ */
+
+function FAQSection() {
+  const faqs = [
+    { q: "Gönderilerim ne kadar sürede teslim ediliyor?", a: "Motor kurye ile İstanbul içi gönderileriniz trafiğe bağlı olarak ortalama 45-90 dakika içinde teslim edilir. İlçelere göre bu süre değişebilir." },
+    { q: "Hangi saatlerde kurye çağırabilirim?", a: "Hizmetimiz 7 gün 24 saat kesintisiz devam etmektedir. Gece nöbetçi kurye ekibimiz de vardiyalı olarak hizmetinizdedir." },
+    { q: "Büyük çaplı gönderiler için uygun araç var mı?", a: "Evet, sadece motor kurye değil, aynı zamanda arabalı kurye seçeneğimiz de bulunmaktadır. Özellikle büyük ve ağır paketler için arabalı kuryeyi tercih edebilirsiniz." },
+    { q: "Hava şartları teslimat süresini etkiler mi?", a: "Mümkün olan en kısa sürede teslimat garantisi versek de ekstrem hava koşulları ve özel trafik durumları ufak gecikmelere sebep olabilir." },
+  ];
+
+  return (
+    <section className="bg-[#FFFEE9] py-24">
+      <div className="mx-auto max-w-4xl px-5 lg:px-8">
+        <Reveal>
+          <div className="text-center mb-12">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-[#797979] uppercase">S.S.S</span>
+            <h2 className="mt-2 text-[clamp(1.8rem,4.5vw,2.5rem)] leading-tight font-bold tracking-tight text-[#151515]">
+              Sıkça Sorulan <span className="italic">Sorular</span>
+            </h2>
+          </div>
+        </Reveal>
+
+        <Reveal delay="d2">
+          <Accordion.Root type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, index) => (
+              <Accordion.Item
+                key={index}
+                value={`item-${index}`}
+                className="overflow-hidden rounded-2xl border border-[#151515]/5 bg-white data-[state=open]:shadow-md data-[state=open]:border-[#C1F11D]/30 transition-all"
+              >
+                <Accordion.Header className="flex">
+                  <Accordion.Trigger className="group flex flex-1 cursor-pointer items-center justify-between px-6 py-5 text-[15px] font-bold text-[#151515] outline-none">
+                    {faq.q}
+                    <ChevronDown
+                      className="h-5 w-5 text-[#797979] transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
+                      aria-hidden
+                    />
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden text-[14px] text-[#797979] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                  <div className="px-6 pb-5 pt-0 leading-relaxed">
+                    {faq.a}
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            ))}
+          </Accordion.Root>
+        </Reveal>
       </div>
     </section>
   );
@@ -724,6 +841,7 @@ export default function Home() {
       <Testimonials />
       <CtaBand />
       <Contact />
+      <FAQSection />
       <Footer />
       <FloatingWhatsApp />
     </>

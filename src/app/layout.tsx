@@ -1,7 +1,8 @@
 import "~/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Outfit } from "next/font/google";
+import { Toaster } from "sonner";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
@@ -12,20 +13,20 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const roboto = Roboto({
+const fontOutfit = Outfit({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-roboto",
+  variable: "--font-sans",
   display: "swap",
-  weight: ["300", "400", "500", "700"],
 });
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className={roboto.variable}>
-      <body>
+    <html lang="tr" className={fontOutfit.variable}>
+      <body className="font-sans antialiased">
         <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );
